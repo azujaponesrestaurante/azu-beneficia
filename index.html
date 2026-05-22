@@ -255,7 +255,11 @@ body { font-family: var(--fb); background: var(--bg); color: var(--text); min-he
 </style>
 </head>
 <body>
-
+<script>
+function iniciarLogin(){if(typeof google==='undefined'){alert('Aguarde o carregamento do Google...');return;}const c=google.accounts.oauth2.initTokenClient({client_id:'476960226767-ir7pejl80v9q62mdnhf5vj1nfksuqjj6.apps.googleusercontent.com',scope:'https://www.googleapis.com/auth/drive.file',callback:async(r)=>{if(r.error){setStatus('Erro no login','var(--red)');return;}window._accessToken=r.access_token;document.getElementById('sync-status').textContent='✓ Conectado';document.getElementById('btn-login').style.display='none';document.getElementById('btn-logout').style.display='inline-flex';}});c.requestAccessToken();}
+function logout(){window._accessToken=null;document.getElementById('sync-status').textContent='Não conectado';document.getElementById('btn-login').style.display='inline-flex';document.getElementById('btn-logout').style.display='none';}
+function showPage(n,b){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));document.getElementById('page-'+n).classList.add('active');(b||document.getElementById('btn-'+n)).classList.add('active');}
+</script>
 <!-- NAV -->
 <div class="nav">
   <div class="nav-inner">
